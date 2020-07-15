@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-videos-dev-145224-authRole",
+            "UnauthRoleArn": "arn:aws:iam::116893430479:role/amplify-videos-dev-145224-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::116893430479:role/amplify-videos-dev-145224-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-videos-dev-145224-deployment",
+            "UnauthRoleName": "amplify-videos-dev-145224-unauthRole",
+            "StackName": "amplify-videos-dev-145224",
+            "StackId": "arn:aws:cloudformation:eu-west-1:116893430479:stack/amplify-videos-dev-145224/8b25ace0-c43e-11ea-b1ce-02aed67d8a72",
+            "AmplifyAppId": "d1uza2nhlyissx"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1uza2nhlyissx",
+                    "type": "manual"
+                }
+            }
+        }
+    }
+}
