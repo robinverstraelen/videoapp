@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <head>
     <title>
       My Play a Entertainment Category Flat Bootstrap Responsive Website
-      Template | Home :: w3layouts
+      Template | single :: w3layouts
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,6 +34,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="js/jquery-1.11.1.min.js"></script>
     <!--start-smoth-scrolling-->
+    <!-- plyr -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
+    <!-- //plyr -->
     <!-- fonts -->
     <link
       href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
@@ -46,15 +49,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       type="text/css"
     />
     <!-- //fonts -->
-    <style>
-      body {
-        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica,
-          Arial, sans-serif;
-      }
-    </style>
   </head>
   <body>
+    <div id="page-live"></div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -94,76 +91,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"></div>
       </div>
     </nav>
-    <div class="col-sm-3 col-md-2 sidebar">
-      <div class="top-navigation">
-        <div class="t-menu">MENU</div>
-        <div class="t-img">
-          <img src="images/lines.png" alt="" />
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      <div class="drop-navigation drop-navigation">
-        <ul class="nav nav-sidebar">
-          <li class="active">
-            <a href="index.html" class="home-icon"
-              ><span class="glyphicon glyphicon-home" aria-hidden="true"></span
-              >Home</a
-            >
-          </li>
-          <li>
-            <a href="#" class="menu1"
-              ><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span
-              >Live<span
-                class="glyphicon glyphicon-menu-down"
-                aria-hidden="true"
-              ></span
-            ></a>
-          </li>
-          <ul class="cl-effect-2">
-            <li><a href="live.html">FIFA</a></li>
-            <li><a href="stream.html">Streaming</a></li>
-          </ul>
-          <!-- script-for-menu -->
-          <script>
-            $("li a.menu1").click(function () {
-              $("ul.cl-effect-2").slideToggle(300, function () {
-                // Animation complete.
+    <div class="main">
+      <div class="show-top-grids">
+        <div class="col-sm-8 single-left">
+          <div class="song">
+            <div class="song-info"></div>
+            <div class="video-grid">
+              <video id="player" playsinline controls>
+                <source
+                  src="https://dgf1ia8vb45qh.cloudfront.net/out/v1/dafbfcdad734480ea2b84a82e79f180e/index.m3u8"
+                  id="live"
+                  type="application/x-mpegURL"
+                />
+              </video>
+            </div>
+          </div>
+          <div class="song-grid-right">
+            <div class="share">
+              <h5>Video info</h5>
+              <ul>
+                <li><a href="#addlike" class="icon like" id="likes"></a></li>
+                <li class="view" id="views"></li>
+              </ul>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="published">
+            <script src="jquery.min.js"></script>
+            <script>
+              $(document).ready(function () {
+                size_li = $("#myList li").size();
+                x = 1;
+                $("#myList li:lt(" + x + ")").show();
+                $("#loadMore").click(function () {
+                  x = x + 1 <= size_li ? x + 1 : size_li;
+                  $("#myList li:lt(" + x + ")").show();
+                });
+                $("#showLess").click(function () {
+                  x = x - 1 < 0 ? 1 : x - 1;
+                  $("#myList li")
+                    .not(":lt(" + x + ")")
+                    .hide();
+                });
               });
-            });
-          </script>
-        </ul>
-        <div class="side-bottom">
-          <div class="side-bottom-icons">
-            <ul class="nav2">
-              <li><a href="#" class="facebook"> </a></li>
-              <li><a href="#" class="facebook twitter"> </a></li>
-              <li><a href="#" class="facebook chrome"> </a></li>
-              <li><a href="#" class="facebook dribbble"> </a></li>
-            </ul>
-          </div>
-          <div class="copyright">
-            <p>
-              Copyright © 2015 My Play. All Rights Reserved | Design by
-              <a href="http://w3layouts.com/">W3layouts</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-      style="padding-top: 0px;"
-    >
-      <div class="main-grids">
-        <div class="recommended">
-          <div class="recommended-grids" id="videolist">
-            <div class="recommended-info">
-              <h3>Recently uploaded</h3>
+            </script>
+            <div class="load_more">
+              <ul id="myList">
+                <li>
+                  <h4 id="live-title"></h4>
+                  <p id="live-description"></p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-	  </div>
-    </div>
+        <div class="col-md-4 single-right">
+          <h3>Up Next</h3>
+          <div class="single-grid-right">
+            <div class="single-right-grids">
+              <div class="col-md-4 single-right-grid-left">
+                <a href="single.html"><img src="images/r1.jpg" alt="" /></a>
+              </div>
+              <div class="col-md-8 single-right-grid-right">
+                <a href="single.html" class="title"> Nullam interdum metus</a>
+                <p class="author"><a href="#" class="author">John Maniya</a></p>
+                <p class="views">2,114,200 views</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
       <!-- footer -->
       <div class="footer" style="position: absolute; bottom: 0; width: 100%;">
         <div class="footer-grids">

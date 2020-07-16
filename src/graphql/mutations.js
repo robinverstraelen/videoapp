@@ -64,3 +64,39 @@ export const deleteVideo = /* GraphQL */ `
     }
   }
 `;
+export const createLiveVideo = /* GraphQL */ `
+  mutation CreateLiveVideo($input: CreateLive_videoInput!) {
+    createLive_video(input: $input) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;
+export const updateLiveVideo = /* GraphQL */ `
+  mutation UpdateLiveVideo($input: UpdateLive_videoInput!) {
+    updateLive_video(input: $input) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;
+export const deleteLiveVideo = /* GraphQL */ `
+  mutation DeleteLiveVideo($input: DeleteLive_videoInput!) {
+    deleteLive_video(input: $input) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;

@@ -5,12 +5,13 @@ import Auth from "@aws-amplify/auth";
 import progressbar from "progressbar.js";
 import sweetalert2 from "sweetalert2";
 import plyr from "plyr";
+import Hls from "hls.js";
 
 import awsconfig from "./aws-exports";
 import { listVideos } from "./graphql/queries";
 import { updateVideo } from "./graphql/mutations";
 import { getVideo } from "./graphql/queries";
-import { onUpdateVideo } from "./graphql/subscriptions";
+import { getLiveVideo } from "./graphql/queries";
 import PubSub from "@aws-amplify/pubsub";
 
 // configure Amplify
@@ -260,4 +261,54 @@ if (title !== null) {
   likes.addEventListener("click", () => {
     AddLike(videoid);
   });
+}
+
+// live scripts
+function createLiveVideoPlayer() {
+  var player = new plyr("#player", {
+    title: "LiveStream",
+  });
+  player.on("ready", function (event) {
+    var instance = event.detail.plyr;
+
+    var hslSource = null;
+    var sources = instance.media.querySelectorAll("source"),
+      i;
+    for (i = 0; i < sources.length; ++i) {
+      if (sources[i].src.indexOf(".m3u8") > -1) {
+        hslSource = sources[i].src;
+      }
+    }
+
+    if (hslSource !== null && Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(hslSource);
+      hls.attachMedia(instance.media);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        console.log("MANIFEST_PARSED");
+      });
+    }
+  });
+}
+
+function setLiveDetails(liveid, titleatt, descriptionatt, likeatt, viewsatt) {
+  API.graphql(graphqlOperation(getLiveVideo, { id: liveid })).then((evt) => {
+    console.log(evt.data);
+    var video = evt.data.getLive_video;
+    titleatt.innerHTML = "LIVE: " + video.title;
+    descriptionatt.innerHTML = video.description;
+    likeatt.innerHTML = video.likes + " Likes";
+    viewsatt.innerHTML = video.watching_now + " watching now";
+  });
+}
+
+const live = document.getElementById("page-live");
+if (live !== null) {
+  createLiveVideoPlayer();
+  const videoid = "fifa";
+  const live_title = document.getElementById("live-title");
+  const live_description = document.getElementById("live-description");
+  const likes = document.getElementById("likes");
+  const views = document.getElementById("views");
+  setLiveDetails(videoid, live_title, live_description, likes, views);
 }

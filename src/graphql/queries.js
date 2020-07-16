@@ -57,3 +57,34 @@ export const listVideos = /* GraphQL */ `
     }
   }
 `;
+export const getLiveVideo = /* GraphQL */ `
+  query GetLiveVideo($id: ID!) {
+    getLive_video(id: $id) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;
+export const listLiveVideos = /* GraphQL */ `
+  query ListLiveVideos(
+    $filter: TableLive_videoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLive_videos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        description
+        likes
+        watching_now
+        streaming_url
+      }
+      nextToken
+    }
+  }
+`;

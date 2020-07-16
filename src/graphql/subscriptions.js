@@ -55,18 +55,11 @@ export const onCreateVideo = /* GraphQL */ `
 export const onUpdateVideo = /* GraphQL */ `
   subscription OnUpdateVideo(
     $id: String
-    $title: String
-    $description: String
     $likes: Int
     $views: Int
+    $stage: String
   ) {
-    onUpdateVideo(
-      id: $id
-      title: $title
-      description: $description
-      likes: $likes
-      views: $views
-    ) {
+    onUpdateVideo(id: $id, likes: $likes, views: $views, stage: $stage) {
       id
       title
       description
@@ -97,6 +90,78 @@ export const onDeleteVideo = /* GraphQL */ `
       likes
       views
       stage
+    }
+  }
+`;
+export const onCreateLiveVideo = /* GraphQL */ `
+  subscription OnCreateLiveVideo(
+    $id: ID
+    $title: String
+    $description: String
+    $likes: Int
+    $watching_now: Int
+  ) {
+    onCreateLive_video(
+      id: $id
+      title: $title
+      description: $description
+      likes: $likes
+      watching_now: $watching_now
+    ) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;
+export const onUpdateLiveVideo = /* GraphQL */ `
+  subscription OnUpdateLiveVideo(
+    $id: ID
+    $title: String
+    $description: String
+    $likes: Int
+    $watching_now: Int
+  ) {
+    onUpdateLive_video(
+      id: $id
+      title: $title
+      description: $description
+      likes: $likes
+      watching_now: $watching_now
+    ) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
+    }
+  }
+`;
+export const onDeleteLiveVideo = /* GraphQL */ `
+  subscription OnDeleteLiveVideo(
+    $id: ID
+    $title: String
+    $description: String
+    $likes: Int
+    $watching_now: Int
+  ) {
+    onDeleteLive_video(
+      id: $id
+      title: $title
+      description: $description
+      likes: $likes
+      watching_now: $watching_now
+    ) {
+      id
+      title
+      description
+      likes
+      watching_now
+      streaming_url
     }
   }
 `;
