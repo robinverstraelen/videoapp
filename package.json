@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Amplify JavaScript Example",
   "dependencies": {
+    "amazon-ivs-player": "^1.0.0",
     "aws-amplify": "latest",
     "hls.js": "^0.14.2",
     "plyr": "^3.6.2",

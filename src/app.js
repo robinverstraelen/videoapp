@@ -6,6 +6,8 @@ import progressbar from "progressbar.js";
 import sweetalert2 from "sweetalert2";
 import plyr from "plyr";
 import Hls from "hls.js";
+import videojs from "video.js";
+import { registerIVSTech } from "amazon-ivs-player";
 
 import awsconfig from "./aws-exports";
 import { listVideos } from "./graphql/queries";
@@ -311,4 +313,10 @@ if (live !== null) {
   const likes = document.getElementById("likes");
   const views = document.getElementById("views");
   setLiveDetails(videoid, live_title, live_description, likes, views);
+}
+
+//stream scripts
+const stream = document.getElementById("page-stream");
+if (stream !== null) {
+  createLiveVideoPlayer();
 }
